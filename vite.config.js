@@ -1,0 +1,15 @@
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+
+export default defineConfig({
+  plugins: [react()],
+  server: {
+    host: true,
+    port: 5000,
+    strictPort: false,
+    hmr: {
+      clientPort: 443,
+      host: process.env.REPLIT_DEV_DOMAIN || 'localhost'
+    }
+  }
+});
