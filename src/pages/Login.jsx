@@ -3,16 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import './Auth.css';
 
-function Signup() {
+function Login() {
   const navigate = useNavigate();
-  const { signup } = useAuth();
-  const [name, setName] = useState('');
+  const { login } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    signup(name, email, password);
+    login(email, password);
     navigate('/feed');
   };
 
@@ -24,23 +23,10 @@ function Signup() {
         </div>
 
         <div className="auth-box">
-          <h2 className="auth-title">Start for free</h2>
-          <p className="auth-subtitle">Create your account and get started</p>
+          <h2 className="auth-title">Welcome back</h2>
+          <p className="auth-subtitle">Log in to your account</p>
 
           <form onSubmit={handleSubmit} className="auth-form">
-            <div className="form-group">
-              <label htmlFor="name" className="form-label">Full name</label>
-              <input
-                type="text"
-                id="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Enter your name"
-                className="form-input"
-                required
-              />
-            </div>
-
             <div className="form-group">
               <label htmlFor="email" className="form-label">Email</label>
               <input
@@ -61,25 +47,25 @@ function Signup() {
                 id="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="Create a password"
+                placeholder="Enter your password"
                 className="form-input"
                 required
               />
             </div>
 
-            <p className="form-disclaimer">
-              By signing up, you agree to receive marketing emails.
-            </p>
+            <div className="form-footer">
+              <a href="#" className="forgot-link">Forgot password?</a>
+            </div>
 
             <button type="submit" className="submit-button">
-              Create account
+              Log in
             </button>
           </form>
 
           <div className="auth-switch">
-            <span>Already have an account? </span>
-            <button onClick={() => navigate('/login')} className="switch-link">
-              Log in
+            <span>Don't have an account? </span>
+            <button onClick={() => navigate('/signup')} className="switch-link">
+              Sign up
             </button>
           </div>
         </div>
@@ -94,4 +80,4 @@ function Signup() {
   );
 }
 
-export default Signup;
+export default Login;
